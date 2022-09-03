@@ -20,7 +20,10 @@ void main() {
         ]).create();
       });
       test('should return valid configs', () {
-        final configs = FlutterLauncherIconsConfig.loadConfigFromPath('flutter_launcher_icons.yaml', prefixPath);
+        final configs = FlutterLauncherIconsConfig.loadConfigFromPath(
+          'flutter_launcher_icons.yaml',
+          prefixPath,
+        );
         expect(configs, isNotNull);
         // android configs
         expect(configs!.android, isTrue);

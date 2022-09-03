@@ -13,9 +13,9 @@ void main() {
     expect(android.isCorrectMipmapDirectoryForAdaptiveIcon(path1), false);
     expect(android.isCorrectMipmapDirectoryForAdaptiveIcon(path2), false);
     expect(
-        android.isCorrectMipmapDirectoryForAdaptiveIcon(
-            androidAdaptiveXmlFolder(null)),
-        true);
+      android.isCorrectMipmapDirectoryForAdaptiveIcon(androidAdaptiveXmlFolder(null)),
+      true,
+    );
   });
 
   test('Correct number of adaptive foreground icons', () {
@@ -33,8 +33,7 @@ void main() {
       'ios': true
     };
     expect(
-      FlutterLauncherIconsConfig.fromJson(flutterIconsConfig)
-          .isCustomAndroidFile,
+      FlutterLauncherIconsConfig.fromJson(flutterIconsConfig).isCustomAndroidFile,
       isFalse,
     );
 
@@ -44,8 +43,7 @@ void main() {
       'ios': true
     };
     expect(
-      FlutterLauncherIconsConfig.fromJson(flutterIconsNewIconConfig)
-          .isCustomAndroidFile,
+      FlutterLauncherIconsConfig.fromJson(flutterIconsNewIconConfig).isCustomAndroidFile,
       isTrue,
     );
   });
@@ -58,8 +56,7 @@ void main() {
       'ios': true
     };
     expect(
-      FlutterLauncherIconsConfig.fromJson(flutterIconsNewIconConfig)
-          .getImagePathAndroid(),
+      FlutterLauncherIconsConfig.fromJson(flutterIconsNewIconConfig).getImagePathAndroid(),
       equals('assets/images/icon-android.png'),
     );
   });
@@ -108,10 +105,10 @@ void main() {
     });
   });
 
-  test(
-      'Transforming manifest with special newline characters should leave special newline characters untouched', () async {
-    final String inputManifest = getAndroidManifestExample('android:icon="@mipmap/ic_launcher"').replaceAll(
-        '\n', '\r\n');
+  test('Transforming manifest with special newline characters should leave special newline characters untouched',
+      () async {
+    final String inputManifest =
+        getAndroidManifestExample('android:icon="@mipmap/ic_launcher"').replaceAll('\n', '\r\n');
     final String expectedManifest = inputManifest;
 
     await withTempFile('AndroidManifest.xml', (File androidManifestFile) async {
@@ -161,5 +158,6 @@ String getAndroidManifestExample(String iconLine) {
     </application>
 
 </manifest>
-  '''.trim();
+  '''
+      .trim();
 }

@@ -48,7 +48,10 @@ class WebIconGenerator extends IconGenerator {
 
   @override
   void createIcons() {
-    final imgFilePath = path.join(context.prefixPath, context.webConfig!.imagePath ?? context.config.imagePath!);
+    final imgFilePath = path.join(
+      context.prefixPath,
+      context.webConfig!.imagePath ?? context.config.imagePath!,
+    );
 
     context.logger.verbose('Decoding and loading image file at $imgFilePath...');
     final imgFile = utils.decodeImageFile(imgFilePath);

@@ -30,7 +30,10 @@ void main() {
         path.join(prefixPath, 'file_that_does_not_exist.txt'),
       ]);
       expect(result, isNotNull);
-      expect(result, equals(path.join(prefixPath, 'file_that_does_not_exist.txt')));
+      expect(
+        result,
+        equals(path.join(prefixPath, 'file_that_does_not_exist.txt')),
+      );
     });
 
     test('should return the dir path that does not exist', () {

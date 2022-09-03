@@ -1,11 +1,12 @@
 import 'dart:io';
+
 import 'package:flutter_launcher_icons/constants.dart';
+import 'package:flutter_launcher_icons/constants.dart' as constants;
+import 'package:flutter_launcher_icons/custom_exceptions.dart';
 import 'package:flutter_launcher_icons/flutter_launcher_icons_config.dart';
 import 'package:flutter_launcher_icons/utils.dart';
 import 'package:flutter_launcher_icons/xml_templates.dart' as xml_template;
 import 'package:image/image.dart';
-import 'package:flutter_launcher_icons/custom_exceptions.dart';
-import 'package:flutter_launcher_icons/constants.dart' as constants;
 import 'package:path/path.dart' as path;
 
 class AndroidIconTemplate {
@@ -31,7 +32,10 @@ List<AndroidIconTemplate> androidIcons = <AndroidIconTemplate>[
   AndroidIconTemplate(directoryName: 'mipmap-xxxhdpi', size: 192),
 ];
 
-void createDefaultIcons(FlutterLauncherIconsConfig flutterLauncherIconsConfig, String? flavor) {
+void createDefaultIcons(
+  FlutterLauncherIconsConfig flutterLauncherIconsConfig,
+  String? flavor,
+) {
   printStatus('Creating default icons Android');
   // todo: support prefixPath
   final String? filePath = flutterLauncherIconsConfig.getImagePathAndroid();

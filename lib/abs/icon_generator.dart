@@ -72,12 +72,14 @@ void generateIconsFor({
   required List<IconGenerator> Function(IconGeneratorContext context) platforms,
 }) {
   try {
-    final platformList = platforms(IconGeneratorContext(
-      config: config,
-      logger: logger,
-      prefixPath: prefixPath,
-      flavor: flavor,
-    ));
+    final platformList = platforms(
+      IconGeneratorContext(
+        config: config,
+        logger: logger,
+        prefixPath: prefixPath,
+        flavor: flavor,
+      ),
+    );
     if (platformList.isEmpty) {
       // ? maybe we can print help
       logger.info('No platform provided');
@@ -85,7 +87,9 @@ void generateIconsFor({
 
     for (final platform in platformList) {
       final progress = logger.progress('Creating Icons for ${platform.platformName}');
-      logger.verbose('Validating platform requirements for ${platform.platformName}');
+      logger.verbose(
+        'Validating platform requirements for ${platform.platformName}',
+      );
       // in case a platform throws an exception it should not effect other platforms
       try {
         if (!platform.validateRequirements()) {

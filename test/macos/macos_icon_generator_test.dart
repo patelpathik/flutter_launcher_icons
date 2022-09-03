@@ -39,7 +39,11 @@ void main() {
         mockConfig = MockFlutterLauncherIconsConfig();
         mockMacOSConfig = MockMacOSConfig();
         mockLogger = MockFLILogger();
-        context = IconGeneratorContext(config: mockConfig, prefixPath: prefixPath, logger: mockLogger);
+        context = IconGeneratorContext(
+          config: mockConfig,
+          prefixPath: prefixPath,
+          logger: mockLogger,
+        );
         generator = MacOSIconGenerator(context);
 
         // initilize mock defaults

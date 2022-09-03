@@ -40,7 +40,12 @@ Future<void> createIconsFromArguments(List<String> arguments) async {
   parser
     ..addFlag(helpFlag, abbr: 'h', help: 'Usage help', negatable: false)
     // Make default null to differentiate when it is explicitly set
-    ..addOption(fileOption, abbr: 'f', help: 'Path to config file', defaultsTo: defaultConfigFile)
+    ..addOption(
+      fileOption,
+      abbr: 'f',
+      help: 'Path to config file',
+      defaultsTo: defaultConfigFile,
+    )
     ..addFlag(verboseFlag, abbr: 'v', help: 'Verbose output', defaultsTo: false)
     ..addOption(
       prefixOption,

@@ -54,7 +54,9 @@ class MacOSIconGenerator extends IconGenerator {
 
     if (macOSConfig == null || !macOSConfig.generate) {
       context.logger
-        ..verbose('$platformName config is missing or "flutter_icons.macos.generate" is false. Skipped...')
+        ..verbose(
+          '$platformName config is missing or "flutter_icons.macos.generate" is false. Skipped...',
+        )
         ..verbose(macOSConfig);
       return false;
     }

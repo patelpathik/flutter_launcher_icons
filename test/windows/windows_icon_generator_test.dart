@@ -36,7 +36,11 @@ void main() {
         mockConfig = MockFlutterLauncherIconsConfig();
         mockWindowsConfig = MockWindowsConfig();
         mockLogger = MockFLILogger();
-        context = IconGeneratorContext(config: mockConfig, prefixPath: prefixPath, logger: mockLogger);
+        context = IconGeneratorContext(
+          config: mockConfig,
+          prefixPath: prefixPath,
+          logger: mockLogger,
+        );
         generator = WindowsIconGenerator(context);
         // initilize mock defaults
         when(mockLogger.error(argThat(anything))).thenReturn(anything);

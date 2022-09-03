@@ -19,23 +19,24 @@ void main() {
     expect(android.androidIcons.length, 5);
   });
 
-  test(
-      'iOS image list used to generate Contents.json for icon directory is correct size',
-      () {
+  test('iOS image list used to generate Contents.json for icon directory is correct size', () {
     expect(ios.createImageList('blah').length, 25);
   });
 
   group('config file from args', () {
     // Create mini parser with only the wanted option, mocking the real one
     final ArgParser parser = ArgParser()
-      ..addOption(main_dart.fileOption, abbr: 'f', defaultsTo: defaultConfigFile)
+      ..addOption(
+        main_dart.fileOption,
+        abbr: 'f',
+        defaultsTo: defaultConfigFile,
+      )
       ..addOption(
         main_dart.prefixOption,
         abbr: 'p',
         defaultsTo: '.',
       );
-    final String testDir =
-        join('.dart_tool', 'flutter_launcher_icons', 'test', 'config_file');
+    final String testDir = join('.dart_tool', 'flutter_launcher_icons', 'test', 'config_file');
 
     late String currentDirectory;
     Future<void> setCurrentDirectory(String path) async {
@@ -52,27 +53,29 @@ void main() {
     });
     test('default', () async {
       await setCurrentDirectory('default');
-      await File('flutter_launcher_icons.yaml').writeAsString('''
+      await File('flutter_launcher_icons.yaml').writeAsString(
+        '''
 flutter_icons:
   android: true
   ios: false
-''');
+''',
+      );
       final ArgResults argResults = parser.parse(<String>[]);
-      final FlutterLauncherIconsConfig? config =
-          main_dart.loadConfigFileFromArgResults(argResults);
+      final FlutterLauncherIconsConfig? config = main_dart.loadConfigFileFromArgResults(argResults);
       expect(config, isNotNull);
       expect(config!.android, isTrue);
     });
     test('default_use_pubspec', () async {
       await setCurrentDirectory('pubspec_only');
-      await File('pubspec.yaml').writeAsString('''
+      await File('pubspec.yaml').writeAsString(
+        '''
 flutter_icons:
   android: true
   ios: false
-''');
+''',
+      );
       ArgResults argResults = parser.parse(<String>[]);
-      final FlutterLauncherIconsConfig? config =
-          main_dart.loadConfigFileFromArgResults(argResults);
+      final FlutterLauncherIconsConfig? config = main_dart.loadConfigFileFromArgResults(argResults);
       expect(config, isNotNull);
       expect(config!.ios, isFalse);
 
@@ -83,15 +86,16 @@ flutter_icons:
 
     test('custom', () async {
       await setCurrentDirectory('custom');
-      await File('custom.yaml').writeAsString('''
+      await File('custom.yaml').writeAsString(
+        '''
 flutter_icons:
   android: true
   ios: true
-''');
+''',
+      );
       // if no argument set, should fail
       ArgResults argResults = parser.parse(<String>['-f', 'custom.yaml']);
-      final FlutterLauncherIconsConfig? config =
-          main_dart.loadConfigFileFromArgResults(argResults);
+      final FlutterLauncherIconsConfig? config = main_dart.loadConfigFileFromArgResults(argResults);
       expect(config, isNotNull);
       expect(config!.ios, isTrue);
 
@@ -144,9 +148,7 @@ flutter_icons:
   });
 
   test('No platform specified in config', () {
-    final Map<String, dynamic> flutterIconsConfig = <String, dynamic>{
-      'image_path': 'assets/images/icon-710x599.png'
-    };
+    final Map<String, dynamic> flutterIconsConfig = <String, dynamic>{'image_path': 'assets/images/icon-710x599.png'};
     final config = FlutterLauncherIconsConfig.fromJson(flutterIconsConfig);
     expect(config.hasPlatformConfig, isFalse);
   });

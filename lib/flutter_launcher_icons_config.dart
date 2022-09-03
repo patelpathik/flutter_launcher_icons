@@ -118,7 +118,10 @@ class FlutterLauncherIconsConfig {
   }
 
   /// Loads flutter launcher icons configs from given [filePath]
-  static FlutterLauncherIconsConfig? loadConfigFromPath(String filePath, String prefixPath) {
+  static FlutterLauncherIconsConfig? loadConfigFromPath(
+    String filePath,
+    String prefixPath,
+  ) {
     final configFile = File(path.join(prefixPath, filePath));
     if (!configFile.existsSync()) {
       return null;
